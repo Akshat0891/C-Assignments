@@ -1,33 +1,27 @@
 using System;
-
-namespace Circle
-{
-    class CircleProgram
-    {
-        
-        public static void Main(string[] args)
-        {
-            double r;
-            Console.WriteLine("Enter the radius of the circle");
-            r = Convert.ToDouble(Console.ReadLine());
-
-            double area = Area(r);
-            double circumference = Circumference(r);
-            Console.WriteLine("Area of the circle = {0}",area);
-            Console.WriteLine("Circumference of the circle = {0}",circumference);
-            Console.Read();
-        }
-        
-        public static double Area(double r)
-        {
-            double pi = 3.14;
-            return pi*r*r;
-        }
-        
-        public static double Circumference(double r)
-        {
-            double pi = 3.14;
-            return 2*pi*r;
-        }
-    }
+  
+namespace circle  
+{  
+    class Program  
+    {  
+        static void Main(string[] args)  
+        {  
+            Console.WriteLine("Please enter radius for circle");  
+            double radius = Convert.ToDouble(Console.ReadLine());  
+            double area = 0;
+            double circumference=0 ;
+            
+            CalculateCircle(radius, out area, out circumference);  
+            Console.WriteLine("Circle's circumference is {0}",circumference);  
+            Console.WriteLine("Circle's Area is {0}",area);  
+            Console.ReadKey();  
+        }  
+  
+       static void CalculateCircle(double radius, out double area, out double circumference)  
+        {  
+            double PI = 3.14;
+            area = PI * radius * radius;  
+            circumference = 2 * PI * radius;  
+        }  
+    }  
 }
