@@ -30,8 +30,6 @@ namespace LitwareLib
         {
             flag = 1;
         }
-        
-
 
     }
 
