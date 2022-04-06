@@ -1,12 +1,11 @@
 using System;
-using System.IO;
 
-namespace Stack_Exception
-{
-    class StackException : Exception
+class StackException : Exception
     {
         public StackException() : base() { }
-        public StackException(string message) : base(message) { }
+        public StackException(string message) : base(message)
+        {
+        }
     }
 
     class Stack
@@ -23,10 +22,16 @@ namespace Stack_Exception
 
         public void Push(int value)
         {
+            try{
             if (this.top == this.size - 1)
-                throw new StackException("stack overflow");
+                throw new StackException();
             else
                 this.stack[++this.top] = value;
+            }
+            catch(Exception ex )
+            {
+                Console.Write("Stack Overflow {0}",ex.Message);
+             }
         }
 
         public void Pop()
@@ -41,7 +46,9 @@ namespace Stack_Exception
             }
         }
          catch(Exception ex )
-         {Console.Write("stack underflow {0}",ex.Message);}
+         {
+             Console.Write("stack underflow {0}",ex.Message); 
+         }
         }
 
         public void DisplayStack()
@@ -53,31 +60,31 @@ namespace Stack_Exception
                 {
                     Console.Write("{0} ", stack[i]);
                 }
-                Console.WriteLine("\n");
+                Console.WriteLine("/n");
             }
             else
                 Console.WriteLine("Empty");
         }
     }
     
-     class program
+     class StackMain
      {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Enter the size of stack");
+            Console.WriteLine("Enter size of the stack");
             int size = Convert.ToInt32(Console.ReadLine());
-            int z = 0;
+            int choice = 0;
 
             Stack obj = new Stack(size);
 
-            while (z != 4)
+            while (choice != 4)
             {
-                Console.WriteLine("\n1. Push\n2. Pop\n3. Display \n4. Exit\n");
-                z = Convert.ToInt32(Console.ReadLine());
-                switch (z)
+                Console.WriteLine("\n1. Push\n2. Pop\n3. Display\n4. Exit\n");
+                choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
                 {
                     case 1:
-                        Console.WriteLine("Enter a number to insert: ");
+                        Console.WriteLine("Enter a value to insert: ");
                         int value = Convert.ToInt32(Console.ReadLine());
                         obj.Push(value);
                         break;
@@ -91,11 +98,9 @@ namespace Stack_Exception
                         Console.WriteLine("Exit");
                         break;
                     default:
-                        Console.WriteLine("Please enter valid input ");
+                        Console.WriteLine("Please enter a valid input ");
                         break;
                 }
             }
-            
         }
     }
-}
